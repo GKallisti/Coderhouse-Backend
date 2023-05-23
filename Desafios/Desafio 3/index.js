@@ -1,19 +1,24 @@
 const express = require('express')
 const server = express()
-const ProductManager= require('./ProductMngr.js')
+const  ProductManager  = require('./ProductMngr.js')
 const PORT= 3001
 
 
 
-server.use('/products', (res, req)=>{
+server.get('/products', async (req, res)=>{
+try {
 const limit = req.query.limit
-const products = ProductManager.getProducts()
-
-if(limit){
-const queryproducts = products.slice(0,limit); 
-res.send(queryproducts)
-
+const products = await  ProductManager.getProducts()
+if (limit) {
+        const limitedProducts = products.slice(0, limit); 
+        res.json(limitedProducts);
+      } else {
+        res.json(products);
+      }
+} catch (error) {
+    console.log(error)
 }
+
 })
 
 

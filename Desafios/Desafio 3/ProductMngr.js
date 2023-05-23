@@ -98,10 +98,9 @@ updateProduct(id, fieldToUpdate) {
     return "Producto eliminado correctamente";
   }
 }
-module.exports= {
-  ProductManager
+module.exports=  ProductManager
 
-}
+
 
 
 
